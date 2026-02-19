@@ -1,3 +1,14 @@
+const [history, setHistory] = useState([]);
+
+useEffect(() => {
+  const saved = localStorage.getItem("vinHistory");
+  try {
+    const parsed = saved ? JSON.parse(saved) : [];
+    setHistory(Array.isArray(parsed) ? parsed : []);
+  } catch (e) {
+    setHistory([]);
+  }
+}, []);
 import { useState, useEffect } from "react";
 import VinForm from "../components/VinForm";
 import HistoryList from "../components/HistoryList";
