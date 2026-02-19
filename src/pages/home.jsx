@@ -167,3 +167,31 @@ const Home = () => {
 };
 
 export default Home;
+const clearHistory = () => {
+  setHistory([]);
+  localStorage.removeItem("vinHistory");
+};
+<div className="history-section">
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    }}
+  >
+    <h3>Останні запити:</h3>
+    {history.length > 0 && (
+      <button onClick={clearHistory} className="clear-btn">
+        Очистити
+      </button>
+    )}
+  </div>
+
+  <div className="results-list">
+    {history.map((item, index) => (
+      <div key={index} className="history-item">
+        {item}
+      </div>
+    ))}
+  </div>
+</div>;
