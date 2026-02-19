@@ -1,8 +1,4 @@
 const HistoryList = ({ history, onClear }) => {
-  // Якщо history прийшов "битий" або це не масив — робимо його порожнім масивом
-  const safeHistory = Array.isArray(history) ? history : [];
-
-  // Якщо масив порожній — нічого не малюємо
   if (safeHistory.length === 0) return null;
 
   return (
@@ -21,7 +17,7 @@ const HistoryList = ({ history, onClear }) => {
         </button>
       </div>
       <div className="results-list">
-        {/* Тепер .map викликається на safeHistory, який 100% є масивом */}
+        {}
         {safeHistory.map((item, index) => (
           <div key={index} className="history-item">
             {item}

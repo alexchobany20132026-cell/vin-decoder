@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/home"; // Зверни увагу: якщо файл home.jsx з маленької, то і тут має бути з маленької
+import Home from "./pages/home";
 import Variables from "./pages/Variables";
 import VariableDetails from "./pages/VariableDetails";
 

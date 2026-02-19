@@ -17,15 +17,13 @@ const Home = () => {
   }, []);
 
   const handleSearch = (vin) => {
-    setError(""); // Скидаємо стару помилку
+    setError("");
 
-    // Перевірка на правильність (наприклад, рівно 17 символів)
     if (vin.length !== 17) {
-      setError("Помилка: Неправильний VIN. Має бути 17 символів!");
-      return; // Зупиняємо функцію, не додаємо в історію
+      setError("Помилка: VIN має містити рівно 17 символів!");
+      return;
     }
 
-    // Якщо все добре — додаємо в масив
     const newHistory = [vin, ...history.filter((h) => h !== vin)].slice(0, 5);
     setHistory(newHistory);
     localStorage.setItem("vinHistory", JSON.stringify(newHistory));
@@ -41,11 +39,19 @@ const Home = () => {
       <h1>Декодер VIN</h1>
       <VinForm onSearch={handleSearch} />
 
-      {/* Вивід помилки */}
+      {}
       {error && (
-        <p style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}>
+        <div
+          style={{
+            color: "white",
+            background: "#ff4d4d",
+            padding: "10px",
+            borderRadius: "5px",
+            margin: "10px 0",
+          }}
+        >
           {error}
-        </p>
+        </div>
       )}
 
       <HistoryList history={history} onClear={clearHistory} />
