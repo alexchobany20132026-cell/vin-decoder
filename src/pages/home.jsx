@@ -1,3 +1,4 @@
+<HistoryList history={history} onClear={clearHistory} />;
 const [history, setHistory] = useState([]);
 
 useEffect(() => {
