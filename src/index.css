@@ -1,141 +1,150 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  color: #eeeeee;
+  line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar {
+  width: 100%;
+  background: #242424;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+}
+
+.navbar a {
+  color: #9db2ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #ffffff;
 }
 
 .container {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
   padding: 0 20px;
-}
-
-h1 {
-  font-size: 2rem;
-  word-wrap: break-word;
-  margin-bottom: 20px;
   text-align: center;
 }
 
-@media (min-width: 768px) {
-  h1 {
-    font-size: 3.5rem;
-  }
+.vin-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
 }
 
-.results-list {
-  text-align: left;
-  list-style: none;
-  padding: 15px;
-  background: #2a2a2a;
+input[type="text"] {
+  padding: 12px 15px;
   border-radius: 8px;
-}
-#root {
-  width: 100vw;
-  margin: 0;
-  padding: 0;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: white;
+  width: 100%;
+  max-width: 400px;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
+.check-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.check-btn:hover {
+  background-color: #0056b3;
+}
+
+.clear-btn {
+  background: transparent;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+.history-section {
+  margin-top: 40px;
+  background: #242424;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.history-item {
+  background: #333;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 6px;
+  font-family: monospace;
 }
 
 .variables-list {
   list-style: none;
-  padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
+  gap: 20px;
+  margin-top: 30px;
 }
 
 .variables-list li {
-  background: #333;
-  border-radius: 8px;
-  transition:
-    transform 0.2s,
-    background 0.2s;
+  background: #2a2a2a;
+  border-radius: 10px;
+  transition: transform 0.2s;
+  border: 1px solid #333;
 }
 
 .variables-list li:hover {
-  background: #444;
-  transform: translateY(-3px);
+  transform: translateY(-5px);
+  border-color: #444;
 }
 
 .variables-list a {
-  color: #abbdff;
-  text-decoration: none;
-  font-weight: 500;
   display: block;
-  padding: 15px;
+  padding: 20px;
+  color: #9db2ff;
+  text-decoration: none;
 }
 
-.variables-list a:hover {
-  color: #ffffff;
+.description-card {
+  background: #242424;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: left;
+  margin-top: 20px;
+  border: 1px solid #333;
 }
