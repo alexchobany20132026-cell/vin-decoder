@@ -5,7 +5,6 @@ const Home = () => {
   const [result, setResult] = useState(null);
   const [history, setHistory] = useState([]);
 
-  // Виправляємо попередження ESLint: використовуємо функцію для ініціалізації стану
   useEffect(() => {
     const loadHistory = () => {
       const savedHistory = JSON.parse(localStorage.getItem("vinHistory")) || [];
@@ -14,7 +13,6 @@ const Home = () => {
     loadHistory();
   }, []);
 
-  // ФУНКЦІЯ ЗАПИТУ (Тепер вона точно async і всередині компонента)
   const handleSearch = async () => {
     const cleanVin = vin.trim();
 
@@ -31,7 +29,6 @@ const Home = () => {
 
       setResult(data.Results);
 
-      // Оновлення історії
       const newHistory = [
         cleanVin,
         ...history.filter((h) => h !== cleanVin),

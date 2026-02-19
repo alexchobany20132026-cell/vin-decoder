@@ -26,7 +26,7 @@ const Variables = () => {
             </div>
           );
         }
-        setError("Не удалось загрузить список переменных");
+        setError("Не вдалося завантажити список змінних");
         setLoading(false);
       }
     };
@@ -34,21 +34,21 @@ const Variables = () => {
     fetchVariables();
   }, []);
 
-  if (loading) return <p>Загрузка данных...</p>;
+  if (loading) return <p>Завантаження даних...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <div className="variables-page">
-      <h1>Список всех переменных API</h1>
+      <h1>Список усіх змінних API</h1>
       <p>
-        Ниже представлены все параметры, которые могут быть возвращены при
-        расшифровке VIN.
+        Нижче представлені всі параметри, які можуть бути повернуті при
+        розшифровці VIN. Натисніть на назву змінної, щоб побачити її опис та
+        приклади використання.
       </p>
 
       <ul className="variables-list">
         {variables.map((v) => (
           <li key={v.ID}>
-            {/* Ссылка на страницу с подробным описанием переменной */}
             <Link to={`/variables/${v.ID}`}>
               <strong>{v.Name}</strong>
             </Link>
