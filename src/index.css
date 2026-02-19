@@ -129,13 +129,13 @@ body {
 }
 
 .variables-list a {
-  display: block;
-  padding: 15px;
-  color: #646cff;
+  color: #9db2ff;
   text-decoration: none;
   font-weight: 500;
+  display: block;
+  padding: 15px;
 }
 
 .variables-list a:hover {
-  color: #747bff;
+  color: #ffffff;
 }
