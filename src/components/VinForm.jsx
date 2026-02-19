@@ -5,9 +5,10 @@ const VinForm = ({ onSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const cleanVin = vin.trim().toUpperCase(); // Приводимо до верхнього регістру
+    // Видаляємо зайві пробіли та робимо літери великими
+    const cleanVin = vin.trim().toUpperCase();
     onSearch(cleanVin);
-    setVin("");
+    setVin(""); // Очищуємо поле після натискання кнопки
   };
 
   return (
@@ -16,8 +17,8 @@ const VinForm = ({ onSearch }) => {
         type="text"
         value={vin}
         onChange={(e) => setVin(e.target.value)}
-        placeholder="Введіть 17 символів..."
-        maxLength={17} // Обмежуємо введення в самому полі
+        placeholder="Введіть 17 символів VIN..."
+        maxLength={17} // Не даємо ввести більше 17 символів
       />
       <button type="submit" className="check-btn">
         Перевірити

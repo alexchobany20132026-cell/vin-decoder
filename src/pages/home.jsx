@@ -4,7 +4,7 @@ import HistoryList from "../components/HistoryList";
 
 const Home = () => {
   const [history, setHistory] = useState([]);
-  const [error, setError] = useState(""); // Стан для помилки
+  const [error, setError] = useState(""); // Стан для тексту помилки
 
   useEffect(() => {
     const saved = localStorage.getItem("vinHistory");
@@ -17,18 +17,22 @@ const Home = () => {
   }, []);
 
   const handleSearch = (vin) => {
-    setError(""); // Скидаємо стару помилку перед новою перевіркою
+    // 1. Очищуємо попередню помилку
+    setError("");
 
-    // Валідація: VIN має бути рівно 17 символів
+    // 2. ПЕРЕВІРКА: якщо довжина не 17 знаків
     if (vin.length !== 17) {
-      setError("Помилка: VIN-код повинен містити рівно 17 символів!");
-      return;
+      setError("Помилка: VIN має містити рівно 17 символів!");
+      return; // Зупиняємо виконання, далі код не йде
     }
 
-    // Якщо все ок, додаємо в історію
-    const newHistory = [vin, ...history.filter((h) => h !== vin)].slice(0, 5);
-    setHistory(newHistory);
-    localStorage.setItem("vinHistory", JSON.stringify(newHistory));
+    // 3. Якщо VIN правильний, додаємо в історію
+    setHistory((prev) => {
+      const current = Array.isArray(prev) ? prev : [];
+      const newHistory = [vin, ...current.filter((h) => h !== vin)].slice(0, 5);
+      localStorage.setItem("vinHistory", JSON.stringify(newHistory));
+      return newHistory;
+    });
   };
 
   const clearHistory = () => {
@@ -42,10 +46,18 @@ const Home = () => {
 
       <VinForm onSearch={handleSearch} />
 
-      {/* Вивід повідомлення про помилку */}
+      {/* ВИВІД ПОМИЛКИ: показуємо тільки якщо error не порожній */}
       {error && (
         <div
-          style={{ color: "#ff4d4d", marginBottom: "15px", fontWeight: "bold" }}
+          style={{
+            color: "white",
+            background: "#ff4d4d",
+            padding: "10px",
+            borderRadius: "5px",
+            margin: "10px 0",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
         >
           {error}
         </div>
