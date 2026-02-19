@@ -66,3 +66,30 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+.results-list {
+  text-align: left;
+  list-style: none;
+  padding: 15px;
+  background: #2a2a2a;
+  border-radius: 8px;
+}
