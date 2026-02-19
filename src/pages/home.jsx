@@ -47,9 +47,10 @@ const Home = () => {
   return (
     <div
       style={{
+        padding: "20px",
         maxWidth: "600px",
         margin: "0 auto",
-        padding: "0 20px",
+
         color: "#fff",
         backgroundColor: "#1a1a1a",
         minHeight: "100vh",

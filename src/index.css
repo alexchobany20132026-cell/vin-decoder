@@ -93,3 +93,12 @@ h1 {
   background: #2a2a2a;
   border-radius: 8px;
 }
+body {
+  padding: 0 15px !important;
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
