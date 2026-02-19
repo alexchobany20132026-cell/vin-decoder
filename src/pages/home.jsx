@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import VinForm from "../components/VinForm"; // ДВІ КРАПКИ ОБОВ'ЯЗКОВО
-import HistoryList from "../components/HistoryList"; // ДВІ КРАПКИ ОБОВ'ЯЗКОВО
+import VinForm from "../components/VinForm";
+import HistoryList from "../components/HistoryList";
 
 const Home = () => {
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([]); // Ініціалізація порожнім масивом
 
   useEffect(() => {
     const saved = localStorage.getItem("vinHistory");
     try {
       const parsed = saved ? JSON.parse(saved) : [];
+      // Гарантуємо, що в state потрапить тільки масив
       setHistory(Array.isArray(parsed) ? parsed : []);
     } catch (e) {
       setHistory([]);
@@ -31,6 +32,7 @@ const Home = () => {
     <div className="home-page">
       <h1>Декодер VIN</h1>
       <VinForm onSearch={handleSearch} />
+      {/* Передаємо масив history */}
       <HistoryList history={history} onClear={clearHistory} />
     </div>
   );
