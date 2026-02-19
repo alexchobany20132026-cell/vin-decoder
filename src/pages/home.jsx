@@ -1,15 +1,3 @@
-<HistoryList history={history} onClear={clearHistory} />;
-const [history, setHistory] = useState([]);
-
-useEffect(() => {
-  const saved = localStorage.getItem("vinHistory");
-  try {
-    const parsed = saved ? JSON.parse(saved) : [];
-    setHistory(Array.isArray(parsed) ? parsed : []);
-  } catch (e) {
-    setHistory([]);
-  }
-}, []);
 import { useState, useEffect } from "react";
 import VinForm from "../components/VinForm";
 import HistoryList from "../components/HistoryList";
@@ -18,12 +6,24 @@ const Home = () => {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("vinHistory") || "[]");
-    setHistory(saved);
+    try {
+      const saved = localStorage.getItem("vinHistory");
+
+      const parsed = saved ? JSON.parse(saved) : [];
+      setHistory(Array.isArray(parsed) ? parsed : []);
+    } catch (error) {
+      console.error("Помилка при читанні історії:", error);
+      setHistory([]);
+    }
   }, []);
 
   const handleSearch = (vin) => {
-    const newHistory = [vin, ...history.slice(0, 4)];
+    if (!vin) return;
+
+    const newHistory = [vin, ...history.filter((item) => item !== vin)].slice(
+      0,
+      5,
+    );
     setHistory(newHistory);
     localStorage.setItem("vinHistory", JSON.stringify(newHistory));
   };
@@ -34,9 +34,10 @@ const Home = () => {
   };
 
   return (
-    <div id="root">
+    <div className="home-page">
       <h1>Декодер VIN</h1>
       <VinForm onSearch={handleSearch} />
+      {}
       <HistoryList history={history} onClear={clearHistory} />
     </div>
   );
