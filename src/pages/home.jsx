@@ -4,7 +4,7 @@ import HistoryList from "../components/HistoryList";
 
 const Home = () => {
   const [history, setHistory] = useState([]);
-  const [error, setError] = useState(""); // Стан для тексту помилки
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const saved = localStorage.getItem("vinHistory");
@@ -17,22 +17,18 @@ const Home = () => {
   }, []);
 
   const handleSearch = (vin) => {
-    // 1. Очищуємо попередню помилку
-    setError("");
+    setError(""); // Скидаємо стару помилку
 
-    // 2. ПЕРЕВІРКА: якщо довжина не 17 знаків
+    // Перевірка на правильність (наприклад, рівно 17 символів)
     if (vin.length !== 17) {
-      setError("Помилка: VIN має містити рівно 17 символів!");
-      return; // Зупиняємо виконання, далі код не йде
+      setError("Помилка: Неправильний VIN. Має бути 17 символів!");
+      return; // Зупиняємо функцію, не додаємо в історію
     }
 
-    // 3. Якщо VIN правильний, додаємо в історію
-    setHistory((prev) => {
-      const current = Array.isArray(prev) ? prev : [];
-      const newHistory = [vin, ...current.filter((h) => h !== vin)].slice(0, 5);
-      localStorage.setItem("vinHistory", JSON.stringify(newHistory));
-      return newHistory;
-    });
+    // Якщо все добре — додаємо в масив
+    const newHistory = [vin, ...history.filter((h) => h !== vin)].slice(0, 5);
+    setHistory(newHistory);
+    localStorage.setItem("vinHistory", JSON.stringify(newHistory));
   };
 
   const clearHistory = () => {
@@ -43,24 +39,13 @@ const Home = () => {
   return (
     <div className="home-page">
       <h1>Декодер VIN</h1>
-
       <VinForm onSearch={handleSearch} />
 
-      {/* ВИВІД ПОМИЛКИ: показуємо тільки якщо error не порожній */}
+      {/* Вивід помилки */}
       {error && (
-        <div
-          style={{
-            color: "white",
-            background: "#ff4d4d",
-            padding: "10px",
-            borderRadius: "5px",
-            margin: "10px 0",
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-        >
+        <p style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}>
           {error}
-        </div>
+        </p>
       )}
 
       <HistoryList history={history} onClear={clearHistory} />
