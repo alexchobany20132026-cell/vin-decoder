@@ -17,7 +17,7 @@ const VinForm = ({ onSearch }) => {
         type="text"
         value={vin}
         onChange={(e) => setVin(e.target.value)}
-        placeholder="Введіть 17 символів..."
+        placeholder="Введіть 17 символів VIN..."
       />
       <button type="submit" className="check-btn">
         Перевірити
