@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import VinForm from "../components/VinForm";
-import HistoryList from "../components/HistoryList";
+import VinForm from "../components/VinForm"; // ДВІ КРАПКИ ОБОВ'ЯЗКОВО
+import HistoryList from "../components/HistoryList"; // ДВІ КРАПКИ ОБОВ'ЯЗКОВО
 
 const Home = () => {
   const [history, setHistory] = useState([]);
@@ -9,7 +9,6 @@ const Home = () => {
     const saved = localStorage.getItem("vinHistory");
     try {
       const parsed = saved ? JSON.parse(saved) : [];
-      // Перевіряємо, чи parsed це дійсно масив
       setHistory(Array.isArray(parsed) ? parsed : []);
     } catch (e) {
       setHistory([]);
@@ -32,7 +31,6 @@ const Home = () => {
     <div className="home-page">
       <h1>Декодер VIN</h1>
       <VinForm onSearch={handleSearch} />
-      {/* Передаємо масив history у компонент */}
       <HistoryList history={history} onClear={clearHistory} />
     </div>
   );

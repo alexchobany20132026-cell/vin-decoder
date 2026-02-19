@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
+import Home from "./pages/home"; // Зверни увагу: якщо файл home.jsx з маленької, то і тут має бути з маленької
 import Variables from "./pages/Variables";
 import VariableDetails from "./pages/VariableDetails";
 
@@ -20,5 +20,3 @@ function App() {
 }
 
 export default App;
-
-<Route path="/" element={<Home />} />;
