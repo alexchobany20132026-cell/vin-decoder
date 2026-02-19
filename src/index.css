@@ -105,3 +105,37 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
+
+.variables-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.variables-list li {
+  background: #333;
+  border-radius: 8px;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.variables-list li:hover {
+  background: #444;
+  transform: translateY(-3px);
+}
+
+.variables-list a {
+  display: block;
+  padding: 15px;
+  color: #646cff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.variables-list a:hover {
+  color: #747bff;
+}
